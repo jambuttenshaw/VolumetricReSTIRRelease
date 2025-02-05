@@ -216,7 +216,11 @@ void VolumeTrackingGVDB<VolumeTrackingAdapterGVDB:IVolumeTrackingAdapterGVDB>(Ra
     if (vertexCenter)
     {
         int iter = 0;
-        while (iter++<3 && (any(dda.p < 0 || dda.p > gvdb.res[lev + mipLevel * 3]))) // guarantee that the point "enters"
+        while (iter++<3 && 
+        (dda.p.x < 0 || dda.p.x > gvdb.res[lev + mipLevel * 3]) &&
+        (dda.p.y < 0 || dda.p.y > gvdb.res[lev + mipLevel * 3]) &&
+        (dda.p.z < 0 || dda.p.z > gvdb.res[lev + mipLevel * 3])
+        ) // guarantee that the point "enters"
         {
             dda.Next();
             dda.Step();
@@ -228,7 +232,11 @@ void VolumeTrackingGVDB<VolumeTrackingAdapterGVDB:IVolumeTrackingAdapterGVDB>(Ra
 
     float Tr = 0.f;
 
-    for (; iter < 4096 && lev > 0 && lev <= topLev && all(dda.p >= 0 && dda.p <= gvdb.res[lev + mipLevel * 3]); iter++) {
+    for (; iter < 4096 && lev > 0 && lev <= topLev && 
+    (dda.p.x >= 0 && dda.p.x <= gvdb.res[lev + mipLevel * 3]) &&
+    (dda.p.y >= 0 && dda.p.y <= gvdb.res[lev + mipLevel * 3]) &&
+    (dda.p.z >= 0 && dda.p.z <= gvdb.res[lev + mipLevel * 3]);
+    iter++) {
 
         dda.Next();
 

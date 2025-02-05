@@ -97,11 +97,19 @@ float3 computeRayOrigin(float3 pos, float3 normal)
 
     // Per-component integer offset to bit representation of fp32 position.
     int3 iOff = int3(normal * iScale);
-    float3 iPos = asfloat(asint(pos) + (pos < 0.f ? -iOff : iOff));
+    float3 iPos = asfloat(asint(pos) + float3(
+        pos.x < 0.f ? -iOff.x : iOff.x,
+        pos.y < 0.f ? -iOff.y : iOff.y,
+        pos.z < 0.f ? -iOff.z : iOff.z
+    ));
 
     // Select per-component between small fixed offset or above variable offset depending on distance to origin.
     float3 fOff = normal * fScale;
-    return abs(pos) < origin ? pos + fOff : iPos;
+    return float3(
+        abs(pos).x < origin ? pos.x + fOff.x : iPos.x,
+        abs(pos).y < origin ? pos.y + fOff.y : iPos.y,
+        abs(pos).z < origin ? pos.z + fOff.z : iPos.z
+    );
 }
 
 /** Ray-sphere intersection.

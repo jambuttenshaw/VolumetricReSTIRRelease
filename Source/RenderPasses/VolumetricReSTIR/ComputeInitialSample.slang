@@ -1,9 +1,20 @@
 import ReSTIRHelper;
 import Utils.Debug.PixelDebug;
 
-Reservoir ComputeInitialSample(Ray primaryRay, float precomputedHitDistance, float precomputedPdfDist, float precomputedTr, int maxBounces, int numInitialSamples,
-    inout SampleGenerator sg, SamplingOptions options, EnvMapSampler envMapSampler, EmissiveLightSampler emissiveSampler,
-    bool useCoarserGridForIndirectBounce, bool useRussianRoulette, bool noReuse
+Reservoir ComputeInitialSample(
+    Ray primaryRay,
+    float precomputedHitDistance,
+    float precomputedPdfDist,
+    float precomputedTr,
+    int maxBounces,
+    int numInitialSamples,
+    inout SampleGenerator sg,
+    SamplingOptions options,
+    EnvMapSampler envMapSampler,
+    EmissiveLightSampler emissiveSampler,
+    bool useCoarserGridForIndirectBounce,
+    bool useRussianRoulette,
+    bool noReuse
 #ifdef SURFACE_SCENE
     , HitInfo hitInfo
 #endif

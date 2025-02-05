@@ -256,17 +256,17 @@ bool sampleLight(const float3 shadingPosW, const LightData light, inout SampleGe
     // Sample the light based on its type: point, directional, or area.
     switch (light.type)
     {
-    case LightType::Point:
+    case (uint)LightType::Point:
         return samplePointLight(shadingPosW, light, ls);
-    case LightType::Directional:
+    case (uint)LightType::Directional:
         return sampleDirectionalLight(shadingPosW, light, ls);
-    case LightType::Rect:
+    case (uint)LightType::Rect:
         return sampleRectAreaLight(shadingPosW, light, sg, ls);
-    case LightType::Sphere:
+    case (uint)LightType::Sphere:
         return sampleSphereAreaLight(shadingPosW, light, sg, ls);
-    case LightType::Disc:
+    case (uint)LightType::Disc:
         return sampleDiscAreaLight(shadingPosW, light, sg, ls);
-    case LightType::Distant:
+    case (uint)LightType::Distant:
         return sampleDistantLight(shadingPosW, light, sg, ls);
     default:
         return false; // Should not happen

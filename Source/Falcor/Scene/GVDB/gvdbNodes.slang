@@ -183,7 +183,11 @@ VDBNode getNodeUnrolledThreeLevel(VDBInfo gvdb, int mipId, int lev, int start_id
 
     {
         vmax = vmin + 4096.f;
-        if (any((pos < vmin) || (pos >= vmax)))
+        if (
+            ((pos.x < vmin.x) || (pos.x >= vmax.x)) &&
+            ((pos.y < vmin.y) || (pos.y >= vmax.y)) &&
+            ((pos.z < vmin.z) || (pos.z >= vmax.z))
+        )
         {
             node_id = ID_UNDEFL;
             return {};
@@ -202,7 +206,11 @@ VDBNode getNodeUnrolledThreeLevel(VDBInfo gvdb, int mipId, int lev, int start_id
 
     {
         vmax = vmin + 128.f;
-        if (any((pos < vmin) || (pos >= vmax)))
+        if (
+            ((pos.x < vmin.x) || (pos.x >= vmax.x)) &&
+            ((pos.y < vmin.y) || (pos.y >= vmax.y)) &&
+            ((pos.z < vmin.z) || (pos.z >= vmax.z))
+        )
         {
             node_id = ID_UNDEFL;
             return {};
@@ -234,7 +242,11 @@ VDBNode getNodeUnrolledTwoLevel(VDBInfo gvdb, int mipId, int lev, int start_id, 
 
     {
         vmax = vmin + 128.f;
-        if (any((pos < vmin) || (pos >= vmax)))
+        if (
+            ((pos.x < vmin.x) || (pos.x >= vmax.x)) &&
+            ((pos.y < vmin.y) || (pos.y >= vmax.y)) &&
+            ((pos.z < vmin.z) || (pos.z >= vmax.z))
+        )
         {
             node_id = ID_UNDEFL;
             return {};
